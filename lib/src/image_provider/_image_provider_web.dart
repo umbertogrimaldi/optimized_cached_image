@@ -102,8 +102,11 @@ class OptimizedCacheImageProvider
     switch (_imageRenderMethodForWeb) {
       case ImageRenderMethodForWeb.HttpGet:
         return _loadAsyncHttpGet(key, chunkEvents, decode);
-      case ImageRenderMethodForWeb.HtmlImage:
-        return loadAsyncHtmlImage(key, chunkEvents, decode).asStream();
+
+      default:
+        return _loadAsyncHttpGet(key, chunkEvents, decode);
+      // case ImageRenderMethodForWeb.HtmlImage:
+      //   return loadAsyncHtmlImage(key, chunkEvents, decode).asStream();
     }
     throw UnsupportedError(
         'ImageRenderMethod $_imageRenderMethodForWeb is not supported');
